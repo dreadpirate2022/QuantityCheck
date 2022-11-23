@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="profiles__page">
+    <section class="hero__section">
+        <div class="hero__section-container">
+            <div class="search__section__text">
+                <h2>CONTACT AN <span>ENGINEER</span></h2>
+                <h2>FOR ANY REQUEST</h2>
+            </div>
+
+            <div class="hero-section__search">
+                <form id="searchForm" class="form" action="{% url 'users:profiles' %}" method="get">
+                <div class="form__field">
+                    <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                    placeholder="Search by engineer name" value="{{search_query}}" />
+                </div>
+    
+                <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+     <section class="profiles__list">
+        <div class="container">
+            <div class="grid grid--three">
+                {% for profile in profiles %}
+                <a href="{% url 'users:user-profile' profile.id %}" class="card__body">
+                    <div class="profiles__card">
+                            <div class="profiles__profile">
+                                <img class="profiles__photo" src="{{profile.imageURL_profile}}" alt="image" />
+                                <div class="profiles__meta">
+                                    <h3>{{profile.name}}</h3>
+                                    <h5>{{profile.short_intro|slice:"600"}}</h5>
+                                </div>
+                                <p class="engineer_info">{{profile.bio|slice:"300"}}</p>
+                                <p class="engineer_email"><span>Contact:</span> {{profile.email}}</p>
+                            </div>                            
+                    </div> 
+                </a>
+                {% endfor %}
+            </div>
+        </div>               
+      </section>
+
+      {% include 'pagination.html' with queryset=profiles custom_range=custom_range %}
+
+    </main>
+
+{% endblock content %}
+    
+
+    

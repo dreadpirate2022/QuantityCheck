@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<main class="home__page">
+    <section class="hero__section">
+        <div class="hero__section-container">
+            <div class="search__section__text">
+                <h2>KEEP TRACKING YOUR <span>QUANTITIES</span></h2>
+                <h2>FOR ANY CONSTRUCTION SITE</h2>
+            </div>
+
+            <div class="hero-section__search">
+                <form id="searchForm" class="form" action="{% url 'constructions:constructions' %}" method="get">
+                <div class="form__field">
+                    <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                    placeholder="Search by construction name" value="{{search_query}}" />
+                </div>
+    
+                <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+     <section class="construction__list">
+        <div class="container">
+            <div class="grid grid--three">
+                {% for construction in constructions %}
+                <div class="column__card">
+                    <div class="construction">
+                        <a href="{% url 'constructions:construction' construction.id %}" class="card__body">
+                            <div class="construction__profile">
+                                <img class="avatar" src="{{construction.imageURL_constructions}}" alt="Construction image" />
+                                <div class="construction__meta">
+                                    <h3>{{construction.title}}</h3>
+                                    <p class="engineer"><a href="{% url 'users:user-profile' construction.owner.id %}">By {{construction.owner.name}}</a></p>
+                                    <h5>{{construction.description|slice:145}}</h5>
+                                </div>
+                            </div>
+                            <div class="construction__skills">
+                                {% for tag in construction.tags.all|slice:'6' %}                    
+                                <span class="tag">
+                                <small>{{tag}}</small>
+                                </span>               
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                </div> 
+                {% endfor %}
+            </div>
+        </div>               
+      </section>
+
+      {% include 'pagination.html' with queryset=constructions custom_range=custom_range %}
+
+    </main>
+
+{% endblock content %}
+    

@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+
+
+{% block content %}  
+
+<main>
+    <section class="info">
+        <div class="image__container">
+            <img src="{{construction.imageURL_single_construction}}" alt="Construction Image">
+        </div>
+        
+        <div class="construction-bio">
+            <h2 class="singleConstruction__title">{{construction.title}}</h2>
+            <h3 class="singleConstruction__subtitle">About the Construction</h3>
+            <div class="singleConstruction__info">{{construction.description}}</div>            
+            <h3 class="singleConstruction__subtitle">Main Positions</h3>
+            <div class="singleConstruction__positionStack">
+                {% for tag in construction.tags.all|slice:'8' %}
+                    <span class="tag__lg">
+                        <small>{{tag}}</small>
+                    </span>
+                {% endfor %}
+            </div>
+        </div>
+    </section>  
+
+    <section class="main__positions">
+        <div class="main__positions-links">
+            <a class="main__position-link" href="{% url 'constructions:earth-positions' construction.id %}"><h2>Earth</h2></a>
+            <a class="main__position-link" href="{% url 'constructions:concrete-positions' construction.id %}"><h2>Concrete</h2></a>
+            <a class="main__position-link" href="{% url 'constructions:reinforcement-positions' construction.id %}"><h2>Reinforcement</h2></a>
+            <a class="main__position-link" href="{% url 'constructions:others-positions' construction.id %}"><h2>Others</h2></a>
+        </div>
+    </section>
+   
+</main>
+
+{% endblock content %}

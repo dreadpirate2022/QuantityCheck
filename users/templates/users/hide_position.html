@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+    <form action="" class="delete__form" method="POST">
+        {% csrf_token %}
+        <p class="delete__message">Are you sure you want to hide "{{object}}"?</p>
+        <a class="add__operation" href="{{request.GET.next}}">Go Back</a>
+        <input class="add__operation" type="submit" value="Confirm">
+    </form>
+{% endblock content %}
+    

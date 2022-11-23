@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="profile">
+    <div class="profile__container">
+        <div class="layout">
+            <div class="profile__card">
+                <img class="profile__photo" src="{{profile.profile_image.url}}" alt="Profile Image">
+                <h2 class="engineer__name">{{profile.name}}</h2>
+                <p class="engineer__title">{{profile.short_intro}}</p>
+                <p class="engineer__location">Location: {{profile.location}}</p>
+                <p class="engineer__email">Contact: {{profile.email}}</p>
+                
+                {% if request.user.profile.id != profile.id %}
+
+                    <a href="{% url 'users:create-message' profile.id %}" class="btn btn--sub btn--lg">Send Message </a>
+                    
+                {% endif %}
+                    
+            </div>
+            <div class="profile__info">
+                <h2>About Me</h2>
+                <p>{{profile.bio|slice:'1000'}}</p>
+                <h2>My Constructions</h2>
+                
+                
+                <div class="construction__tags">
+                    {% for construction in constructions %}
+
+                        {% if construction.owner.name == profile.name %}
+                            <a href="{% url 'constructions:construction' construction.id %}" class="construction__tag"><span >{{construction}}</span></a>
+                        {% endif %}
+                                
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
+
+    

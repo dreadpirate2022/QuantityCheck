@@ -1,0 +1,54 @@
+:root {
+  --color-white-light: rgba(136, 136, 136, 0.2);
+  --color-main-light: rgb(180, 206, 255);
+  --color-main: rgb(0, 54, 155);
+  --color-error-bg: rgb(255, 179, 179);
+  --color-error: rgb(155, 0, 0);
+  --color-success-bg: rgb(219, 255, 219);
+  --color-success: rgb(0, 155, 0);
+}
+
+.alert {
+    display: inline-flex;
+    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2.5rem;
+    border-radius: 3px;
+    border: 1px solid var(--color-white-light);
+    margin-top: 1rem;
+    margin-left: 1rem;
+    position: absolute;
+    z-index: 10;   
+}
+  
+.alert {
+    background-color: var(--color-main-light);
+    color: var(--color-main);
+    font-size: 1.4rem;
+}
+  
+.alert.alert--error,
+.alert.alert--error > .alert__message {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+}
+  
+.alert.alert--success,
+.alert.alert--success > .alert__message {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+}
+  
+.alert > .alert__close {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    outline: transparent;
+    font-size: 2rem;
+}
+  
+.alert > .alert__close:hover {
+    opacity: 0.85;
+}
+  

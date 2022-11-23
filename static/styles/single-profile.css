@@ -1,0 +1,100 @@
+.profile__container {
+    width: 100vw;
+    height: 100vh; 
+}
+
+.layout {
+    padding-top: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10rem;    
+}
+
+.profile__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
+    color: #333333;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+    width: 45rem;
+    padding: 3rem;
+    height: fit-content;
+    background-color: #fff;
+}
+
+.profile__photo {
+    width: 20rem;
+    height: 20rem;
+    border: solid 0.2px #bd0000;
+    border-radius: 50%;
+}
+
+.engineer__name {
+    font-size: 2.6rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: #bd0000;
+}
+
+.engineer__title {
+    font-size: 2rem;
+    text-decoration: underline;
+    text-decoration-color: #bd0000;
+}
+
+.engineer__location, .engineer__email {
+    font-size: 1.8rem;
+}
+
+.profile__card a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    width: 16rem;
+    background-color: #bd0000;
+    transition: all 0.3s ease-out;
+}
+
+.profile__card a:hover {
+    background-color: #fff;
+    color: #bd0000;
+}
+
+.profile__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    color: #333333;
+    width: 80rem;
+}
+
+.profile__info h2 {
+    font-size: 3.2rem;
+}
+
+.profile__info p {
+    font-size: 1.8rem;
+}
+
+.construction__tags {
+    display: flex;
+    font-size: 1.8rem;
+    gap: 2.4rem;
+}
+
+.construction__tag {
+    text-decoration: underline;
+    text-decoration-color: #bd0000;
+    color: #333333;
+    transition: all 0.3s ease-out;
+}
+
+.construction__tag:hover {
+    text-decoration: none;
+    color: #bd0000;
+}
+

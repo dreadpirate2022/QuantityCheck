@@ -1,0 +1,289 @@
+ /* Add Construction form and Search inputs */
+ .add__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.add__form textarea {
+    width: 40vw;
+    height: 20rem;
+    border: solid 0.2px #bd0000;
+    border-radius: 0.5rem;
+    padding: 1.5rem 3rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #333333;
+    outline: none;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.add__form textarea::placeholder {
+    font-size: 1.8rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    color: #888;
+}
+
+.form__label {
+    font-size: 2rem;
+    padding: 0.5rem 0rem;
+}
+
+.checkbox {
+    display: flex;
+    padding: 1rem;
+    gap: 2rem;
+    font-size: 1.4rem;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.content-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+}
+
+
+.formWrapper {
+    background-color: rgb(253, 240, 240);
+    padding: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+}
+
+.formWrapper::after {
+    z-index: -1;
+    opacity: 0.1;
+    content: '';
+    display: block;
+    position: fixed;   
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../images/pattern.jpg);
+    background-size: 50rem;
+}
+
+.backButton {
+    text-decoration: none;
+    font-size: 2.2rem;
+    align-self: flex-end;
+    color: #333333;
+    transition: 0.3s ease-out;
+}
+
+.backButton:hover {
+    color: #bd0000;
+}
+
+.backButton:active {
+    transform: scale(0.97);
+}
+
+.featured__image {
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.project__tag {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+
+/* Login and Register form */
+
+.auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    background: transparent;
+    z-index: 1;
+    background-color: rgb(253, 240, 240);
+    margin: 6rem auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+    padding: 5rem 10rem;
+}
+
+.auth::after {
+    z-index: -1;
+    opacity: 0.1;
+    content: '';
+    display: block;
+    position: fixed;   
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../images/pattern.jpg);
+    background-size: 50rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.auth__header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    gap: 2rem;
+    color: #333333;
+    margin-bottom: 2rem;
+    font-weight: 700;
+}
+
+.auth__header h3 {
+    font-size: 3.6rem;
+}
+
+.auth__header p {
+    font-size: 2.4rem;
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0rem 10rem;
+    gap: 4rem;
+}
+
+.form__field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form__field label {
+    font-size: 1.8rem;
+    color: #333333;
+    margin-bottom: 0.6rem;
+}
+
+.auth__actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.auth__actions a {
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: #bd0000;
+    font-weight: 700;
+}
+
+.auth__alternative {
+    padding: 0rem 10rem;
+    font-size: 1.8rem;
+}
+
+.auth__alternative a {
+    text-decoration: none;
+    color: #bd0000;
+    font-weight: 700;
+}
+
+.form__fields-messages {
+    font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+    color: red;
+}
+
+.form__field p {
+    font-size: 1.4rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    gap: 2rem
+}
+
+.form__field p > label {
+    font-size: 1.4rem;
+}
+
+/* Delete Form */
+
+.delete__form {
+    margin: 5rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    width: fit-content;
+}
+
+.delete__form p {
+    grid-column: 1/3;
+    font-size: 1.8rem;
+    padding: 2rem;
+}
+
+.delete__form a {
+    display: flex;
+    grid-column: 1/2;
+    grid-row: 2/3;
+    height: 5rem;
+    align-items: center;
+}
+
+.delete__form input {
+    display: flex;
+    align-items: center;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    cursor: pointer;
+}
+
+/* PASSWORD RESET */
+.password__reset {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.4rem;
+    padding: 2rem;
+    margin-top: 5rem;
+    color: #333333;
+}
+
+.password__reset h3 {
+    font-size: 2.4rem;
+}
+
+.password__reset p {
+    font-size: 1.6rem;
+}
+
+.password__form form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.6rem;
+    width: fit-content;
+}
+
+.password__form .operation {
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+.password__reset a {
+    text-decoration: none;
+    color: #bd0000;
+    font-weight: 700;
+    font-size: 1.6rem;
+}

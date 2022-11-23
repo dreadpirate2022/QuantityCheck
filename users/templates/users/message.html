@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+  <!-- Main Section -->
+  <main>
+    <div class="content-box">
+      <div class="message__container">
+        <a class="backButton" href="{% url 'users:inbox' %}">&#10006</a>
+        <h2 class="message__subject-lg">{{message.subject}}</h4>
+
+          
+          {% if message.sender.user %}
+          <a href="{% url 'users:user-profile' message.sender.id %}" class="message__author-lg">{{message.name}}</a>
+          {% else %}
+          <a href="" class="message__author-lg">{{message.name}}</a>
+          {% endif %}
+            
+          <p class="message__date-lg">{{message.created}}</p>
+          <div class="message__body-lg">{{message.body|linebreaksbr}}</div>
+          <a class="operation message__delete" href="{% url 'users:delete-message' message.id %}">Delete</a>
+      </div>
+    </div>
+  </main>
+{% endblock content %}
+  
+
+

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+
+{% block content %}    
+
+    <main class="formPage">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{{request.META.HTTP_REFERER}}">&#10006</a>
+                <br>
+    
+                <form id="construction__form" action="" class="add__form" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+    
+                        <!-- Input:Text -->
+                        <div class="form__field">
+                            <label class="form__label" for="formInput#text">{{field.label}}</label>
+                            <p>{{field}}</p>
+                        </div>
+                        
+                    {% endfor %}
+    
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+    
+{% endblock content %}
+    

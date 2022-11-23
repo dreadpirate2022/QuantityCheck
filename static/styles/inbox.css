@@ -1,0 +1,128 @@
+.content-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    width: 60vw;    
+    margin-top: 5rem;
+    padding: 2rem 5rem;
+}
+
+.content-box::after {
+    z-index: -1;
+    opacity: 0.1;
+    content: '';
+    display: block;
+    position: fixed;   
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: url(../images/pattern.jpg);
+    background-size: 50rem;
+}
+
+.inbox__title {
+    font-size: 2.6rem;
+    font-weight: 700;
+    width: 100%;
+    padding: 1rem;
+}
+
+.inbox__title span {
+    color: #bd0000;
+}
+
+.messages {
+    display: grid;
+    grid-template-rows: auto;
+    width: 100%;
+    justify-content: center;
+    list-style-type: none;
+    gap: 2.6rem;
+    width: 100%;
+    height: fit-content;
+    padding: 2rem;
+    background-color: rgb(253, 240, 240);  
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+}
+
+.message a {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    align-items: center;
+    justify-items: flex-start;
+    text-decoration: none;
+    color: #333333;
+    font-size: 2rem;   
+    padding-bottom: 0.5rem;
+    align-items: center;
+    width: 50vw;
+    gap: 5rem;
+    border-bottom: solid 0.2px #bd0000;
+    margin-bottom: 1rem;
+}
+
+.message__subject, .message__date {
+    text-align: left;
+}
+
+.message--unread {
+    font-weight: 700;
+}
+
+.message__date {
+    justify-self: flex-end;
+}
+
+.message__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    color: #333333;
+    background-color: rgb(253, 240, 240);  
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+    padding: 2rem 3rem;
+}
+
+.message__subject-lg {
+    font-size: 3.6rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+}
+
+.message__author-lg {
+    color: #bd0000;
+    font-size: 1.8rem;
+    text-decoration: none;
+    font-weight: 700;
+    padding-left: 3rem;
+
+}
+
+.message__date-lg {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding-left: 3rem;
+
+}
+
+.message__body-lg {
+    font-size: 1.6rem;
+    padding-left: 3rem;
+    margin-bottom: 3rem;
+}
+
+.message__empty {
+    font-size: 1.6rem;
+}
+
+.message__delete {    
+    margin-left: auto;
+}

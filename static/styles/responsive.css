@@ -1,0 +1,357 @@
+/* rem and em do NOT depend on html font-size in media queries */
+/* instead, 1rem = 1em = 16px */
+
+/* BELOW 1440px - Small desktops */
+@media (max-width: 90em) {
+    header {
+        padding: 2rem 23rem;
+    } 
+
+    .grid--three {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .profiles__card, .column__card {
+        width: 32vw
+    }
+
+    .profile__card {
+        width: 35rem;
+        margin-bottom: 3rem;
+    }
+
+    .main__positions-links {
+        justify-content: left;
+        gap: 5rem;
+    }
+
+    .layout {
+        gap: 5rem;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+
+    .content-box {
+        width: 65vw;
+    }
+
+    .form.auth__form {
+        align-items: center;
+        width: 100%;
+    }
+
+    .auth__alternative {
+        justify-self: flex-start;
+    }
+    
+    .card {
+        align-items: flex-start;
+    }
+
+    .auth__header {
+        align-self: center;
+    }
+
+    .data {
+        width: 85vw;
+    }
+}
+
+/* BELOW 1200px Landscape Tablets */
+@media (max-width: 75em) {
+    html {
+        font-size: 56.25%;
+    }
+
+    header {
+        padding: 2rem 15rem;
+    }
+    
+    .profiles__card, .column__card {
+        width: 35vw
+    }
+
+    .content-box {
+        width: 60vw;
+    } 
+
+    .engineer__email {
+        text-align: center;
+    }
+
+    .content-box {
+        width: 65vw;
+    }
+
+    .form.auth__form {
+        align-items: center;
+        width: 100%;
+    }
+
+    .auth__alternative {
+        justify-self: flex-start;
+    }
+    
+    .card {
+        align-items: flex-start;
+    }
+
+    .auth__header {
+        align-self: center;
+    }
+
+    .info {
+        gap: 5rem;
+    }
+
+    .data {
+        width: 90vw;
+    }
+}
+
+/* BELOW 944px Tablets */
+@media (max-width: 59em) {
+    html {
+        font-size: 50%;
+    }
+    
+    header {
+        padding: 2rem 7rem;
+    }
+
+    .form {
+        width: 100vw;
+    }
+
+    .profiles__card, .column__card {
+        width: 40vw
+    }
+
+    .grid {
+        column-gap: 3rem;
+    }
+
+    .engineer__email {
+        text-align: center;
+    }
+
+    .content-box {
+        width: 70vw;
+    }
+
+    .feature {
+        text-align: center;
+    }
+
+    .construction__features {
+        padding-bottom: 0.5rem;
+    }
+
+    .form.auth__form {
+        align-items: center;
+        width: 100%;
+    }
+
+    .auth__alternative {
+        justify-self: flex-start;
+    }
+    
+    .card {
+        align-items: flex-start;
+    }
+
+    .auth__header {
+        align-self: center;
+    }
+
+    .info {
+        gap: 5rem;
+    }
+
+    .main__positions-links {
+        width: 80vw;
+    }
+
+    .data {
+        width: 95vw;
+    }
+    
+    .input, #id_bio, #id_description, #id_body {
+        min-width: 50vw;
+    }
+}
+
+/* BELOW 704px Smaller tablets */
+@media (max-width: 44em) {
+    header {
+        align-items: flex-start;
+    }
+
+    .header__menu {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+        float: right;
+        z-index: 10;
+        width: fit-content;
+        height: fit-content;
+        background-color: rgba(253, 240, 240, 0.9);
+        box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+        padding: 1rem 2rem 1rem 2rem;
+        border-radius: 1rem;
+    }
+
+    .header__menuItem.close {
+        display: none;
+    }
+
+    .grid--three {
+        grid-template-columns: 1fr;
+    }
+
+    .profiles__card, .column__card {
+        width: 60vw
+    }
+
+    .content-box {
+        width: 75vw;
+    }
+
+    .construction__features {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2.5rem;
+        width: 80vw;
+    }
+
+    .layout {
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        padding: 2rem
+    }
+
+    .profile__card {
+        width: 80vw;
+    }
+
+    .construction__tags-account {
+        align-items: center;
+    }
+
+    .profile__info {
+        width: 85%;
+    }
+
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .construction-bio {
+        align-self: center;
+        width: 100%;
+        align-items: center;
+    }
+
+    .main__positions-links {
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .menu__btn {
+        display: block;
+    }
+
+    .form.auth__form {
+        align-items: center;
+        width: 100%;
+    }
+
+    .auth__alternative {
+        justify-self: flex-start;
+    }
+    
+    .card {
+        align-items: flex-start;
+    }
+
+    .auth__header {
+        align-self: center;
+    }
+
+    .data__features {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        row-gap: 2rem;
+    }
+
+    .input, #id_bio, #id_description, #id_body {
+        min-width: 65vw;
+    }
+}
+
+/* BELOW 544px Phones */
+@media (max-width: 34em) {
+    .search__section__text h2, .search__section__text h2 > span {       
+        font-size: 2.8rem;
+    }
+
+    .data {
+        width: 100vw;
+    }
+
+    .content-box {
+        width: 85vw;
+    }
+
+    .profiles__card, .column__card {
+        width: 85vw
+    }
+
+    .my__constructions h2 {
+        font-size: 2.4rem;
+    }
+    
+    .input, #id_bio, #id_description, #id_body {
+        min-width: 65vw;
+    }
+
+    .data__operations {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    #delete, #add_new {
+        margin: 0;
+    }
+    
+    .info {
+        padding: 1rem 2rem;
+    }
+
+    .content-box {
+        width: 80vw;
+    }
+    
+    .messages a{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }    
+
+    .message__data {
+        justify-self: center;
+    }
+
+    .singleConstruction__subtitle {
+        width: 65vw;
+        text-align: center;
+    }
+}

@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main>  
+        <section class="search__add-section">
+
+            <h3 class=singleConstruction__subtitle>Earth Quantities for <a class="subtitle__link" href="{% url 'constructions:construction' construction.id %}">{{construction}}</a></h3>
+            <div class="search__add">
+                <form class="form" action="#" method="get">
+                    <div class="form__field">
+                        <input class="input input--text" id="formInput#search" type="text" name="search_query" value="{{search_query}}"
+                        placeholder="Search for position" />
+                    </div>
+        
+                    <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+                </form>
+            </div>
+                
+        </section>
+        <section class="data">
+            <div class="data__operations">
+                <button class="btn add__operation sort">Sort &darr;</button>
+                
+                {% if request.user.profile == construction.owner %}
+                    <a class="add__operation" id="add_new" href="{% url 'constructions:add-earth-quantity' construction.id %}">➕ New Quantity</a>
+                {% endif %}
+
+                <div class="data__total">
+                    <label for="quantity">Total:</label>
+                        <p id="total"></p>
+                        <p id="measure__unit"></p>
+                </div>                
+            </div>           
+            
+            <div class="data__container">
+                {% for quantity in quantities %}        
+                    {% if quantity.owner == construction %}
+                    
+                        <div class="data__features">
+                            <div class="data__feature">
+                                <label for="created">Created:</label>
+                                <p>{{quantity.created|date:"d M, Y"}}</p>
+                            </div>
+                            <div class="data__feature">
+                                <label for="name">Name:</label>
+                                <p>{{quantity.name}}</p>
+                            </div>
+                            <div class="data__feature">
+                                <label for="custom_name">Custom Name:</label>
+                                <p>{{quantity.custom_name}}</p>
+                            </div>
+                            <div class="data__feature">
+                                <label for="quantity">Quantity:</label>
+                                <p class="data__quantity">{{quantity.quantity}}</p>
+                            </div>
+                            <div class="data__feature">
+                                <label for="measure_unit">Unit:</label>
+                                <p class="measure__units">{{quantity.measure_unit}}</p>
+                            </div>
+
+                            {% if request.user.profile == construction.owner %}
+                                <div class="data__operations">
+                                    <a class="operation" href="{% url 'constructions:update-earth-quantity' quantity.id %}">Edit</a>
+                                    <a class="operation" id="delete" href="{% url 'constructions:delete-earth-quantity' quantity.id %}">Delete</a>
+                                </div>
+                            {% endif %} 
+                            
+                        </div>
+                        
+                        {% endif %}
+                        
+                {% endfor %}
+                
+            </div>            
+        </section>        
+</main>
+
+{% endblock content %}

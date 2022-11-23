@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'styles/constructions.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/single-construction.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/form.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/profiles.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/single-profile.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/alerts.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/account.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/data.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/inbox.css' %}" media="screen" type="text/css">
+        <link rel="stylesheet" href="{% static 'styles/responsive.css' %}" media="screen" type="text/css">
+
+        <script defer src="{% static 'js/app.js' %}"></script>
+        <script defer src="{% static 'js/pagination.js' %}"></script>
+        <title>QuantityCheck</title>
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+
+        {% if messages %}            
+        
+            {% for message in messages  %}
+                <div class="alert alert--{{message.tags}}">
+                    <p class="alert__message">{{message}}</p>
+                    <button class="alert__close">&#10006</button>
+                </div>
+            {% endfor %}            
+            
+        {% endif %}
+            
+            
+        {% block content %}
+            
+        {% endblock content %}
+    
+    </body>
+</html>

@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <div class="profile__container">
+        <div class="layout">
+            <div class="profile__card">
+                <img class="profile__photo" src="{{profile.imageURL_profile}}" alt="Profile Image">
+                <h2 class="engineer__name">{{profile.name}}</h2>
+                <p class="engineer__title">{{profile.short_intro}}</p>
+                <p class="engineer__location">Location: {{profile.location}}</p>
+                <p class="engineer__email">Contact: {{profile.email}}</p>
+                <a href="{% url 'users:edit-account' %}" class="btn btn--sub btn--lg">Edit Account</a>
+                <a href="{% url 'users:delete-account' profile.id %}" class="btn btn--sub btn--lg">Delete Account</a>
+            </div>
+            <div class="profile__info">
+                <h2>About Me</h2>
+                <p>{{profile.bio|slice:'1000'}}</p>
+
+                <div class="my__constructions">
+                    <h2>My Constructions</h2>
+                    <a class="add__operation" href="{% url 'constructions:create-construction' %}">➕ New Construction</a>
+                </div>
+                
+                
+                <div class="construction__tags-account">
+                    {% for construction in constructions %}
+
+                        {% if construction.owner.name == profile.name %}                             
+
+                            <div class="construction__features">
+                                
+                                <div class="feature">
+                                    <label for="image">Image</label>
+                                    <a href="{% url 'constructions:construction' construction.id %}"><img class="construction__thumbnail" src="{{construction.imageURL_single_construction}}" alt="Project Thumbnail" /></a>
+                                </div>
+
+                                <div class="feature">
+                                    <label for="name">Name</label>
+                                    <a href="{% url 'constructions:construction' construction.id %}" class="construction__tag"><span >{{construction}}</span></a>
+                                </div>
+
+                                <div class="feature">
+                                    <label for="description">Description</label>
+                                    <p>{{construction.description|slice:'150'}}</p>
+                                </div>
+                                
+                                <div class="feature_positions">
+                                    <label for="description" class="positions">Positions: </label>
+                                        <div class="feature_positions-grid">
+                                            {% for tag in construction.tags.all|slice:'6' %}
+                                                    <span class="tag__lg position__hide">
+                                                        <small>{{tag}}</small><small data-tag="{{tag.id}}" data-construction="{{construction.id}}" class="deletePosition">&#10006</small>
+                                                    </span>
+                                            {% endfor %}
+                                        </div>
+                                </div>                                 
+
+                                <div class="operations">
+                                    <a class="operation" href="{% url 'constructions:update-construction' construction.id %}">Edit</a>
+                                    <a class="operation" href="{% url 'constructions:delete-construction' construction.id %}?next=/users/account/">Delete</a>
+                                </div>  
+                            </div>
+                        {% endif %}
+                                
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
+    

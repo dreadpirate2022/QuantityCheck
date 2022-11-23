@@ -1,0 +1,82 @@
+.profiles__photo {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    border: solid 0.2px #bd0000;
+}
+
+.profiles__profile {
+   display: grid;
+   grid-template-columns: 0.4fr 1fr;
+   grid-template-rows: 1fr 0.4fr 0.1fr;
+   row-gap: 2.4rem;
+   padding: 1rem;
+}
+
+.profiles__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    justify-self: center;
+}
+
+.profiles__meta h3 {
+    font-size: 2.4rem;
+    color: #333333;
+    margin: 0.5rem 2rem 0.5rem 2rem;
+    font-weight: 700;
+}
+
+.profiles__meta h5 {
+    margin: 0.5rem 2rem 0.5rem 2rem;
+    font-size: 1.8rem;
+    color: #333333;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.engineer_info {
+    grid-column: 1/3;
+    grid-row: 2/3;
+    align-self: flex-start;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #333333;
+    text-align: justify;
+    word-wrap: break-word;
+    width: inherit;
+}
+
+.engineer_email {
+    grid-column: 1/3;
+    grid-row: 3/4;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #333333;
+    justify-self: flex-start;
+    align-self: flex-end;
+}
+
+.engineer_email span {
+    font-weight: 700;
+}
+
+.profiles__card {
+    border-radius: 1rem;
+    width: 23vw;
+    height: 36rem;
+    padding: 0.5rem;
+    background-color: rgb(253, 240, 240);  
+    padding: 1rem;
+    box-shadow: 0 0 1px 1px rgba(136, 136, 136, 0.2);
+}
+
+.profiles__card:hover {
+    opacity: 85%;
+}
+
+.profiles__profile {
+    width: 100%;
+    height: 100%;
+}
