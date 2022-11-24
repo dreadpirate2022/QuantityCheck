@@ -95,7 +95,6 @@ def earthPositions(request, pk):
     context = {'construction':constructionObj, 'quantities':quantities}
     return render(request, 'constructions/earth_positions.html', context)
 
-@login_required(login_url='users:login')
 def concretePositions(request, pk):
     constructionObj = Construction.objects.get(id=pk)
     quantities = searchConcrete(request)
@@ -103,7 +102,6 @@ def concretePositions(request, pk):
     context = {'construction':constructionObj, 'quantities':quantities}
     return render(request, 'constructions/concrete_positions.html', context)
 
-@login_required(login_url='users:login')
 def reinforcementPositions(request, pk):
     constructionObj = Construction.objects.get(id=pk)
     quantities = searchReinforcement(request)
@@ -111,7 +109,6 @@ def reinforcementPositions(request, pk):
     context = {'construction':constructionObj, 'quantities':quantities}
     return render(request, 'constructions/reinforcement_positions.html', context)
 
-@login_required(login_url='users:login')
 def othersPositions(request, pk):
     constructionObj = Construction.objects.get(id=pk)
     quantities = searchOthers(request)
