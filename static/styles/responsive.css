@@ -179,6 +179,10 @@
     .input, #id_bio, #id_description, #id_body {
         min-width: 50vw;
     }
+
+    .auth {
+        width: 60%;
+    }
 }
 
 /* BELOW 704px Smaller tablets */
@@ -294,6 +298,10 @@
     .input, #id_bio, #id_description, #id_body {
         min-width: 65vw;
     }
+
+    .auth {
+        width: 80%;
+    }
 }
 
 /* BELOW 544px Phones */
@@ -353,5 +361,9 @@
     .singleConstruction__subtitle {
         width: 65vw;
         text-align: center;
+    }
+
+    .auth {
+        width: 80%;
     }
 }
