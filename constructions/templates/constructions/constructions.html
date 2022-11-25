@@ -36,7 +36,7 @@
                                 <div class="construction__meta">
                                     <h3>{{construction.title}}</h3>
                                     <p class="engineer"><a href="{% url 'users:user-profile' construction.owner.id %}">By {{construction.owner.name}}</a></p>
-                                    <h5>{{construction.description|slice:145}}</h5>
+                                    <h5>{{construction.description|truncatewords:30}}</h5>
                                 </div>
                             </div>
                             <div class="construction__skills">

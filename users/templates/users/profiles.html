@@ -33,9 +33,9 @@
                                 <img class="profiles__photo" src="{{profile.imageURL_profile}}" alt="image" />
                                 <div class="profiles__meta">
                                     <h3>{{profile.name}}</h3>
-                                    <h5>{{profile.short_intro|slice:"600"}}</h5>
+                                    <h5>{{profile.short_intro|slice:"60"}}</h5>
                                 </div>
-                                <p class="engineer_info">{{profile.bio|slice:"300"}}</p>
+                                <p class="engineer_info">{{profile.bio|truncatewords:50}}</p>
                                 <p class="engineer_email"><span>Contact:</span> {{profile.email}}</p>
                             </div>                            
                     </div> 
