@@ -51,10 +51,11 @@ class Tag(models.Model):
 
 class Earth(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
-    measure_unit = models.CharField(max_length=10)
+    measure_unit = models.CharField(max_length=10, null=True, blank=True)
+    measure_unit_dropdown = models.ForeignKey('MeasureUnit', null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
@@ -62,14 +63,15 @@ class Earth(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['-created']        
 
 class Concrete(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
-    measure_unit = models.CharField(max_length=10)
+    measure_unit = models.CharField(max_length=10, null=True, blank=True)
+    measure_unit_dropdown = models.ForeignKey('MeasureUnit', null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
@@ -81,10 +83,11 @@ class Concrete(models.Model):
 
 class Reinforcement(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
-    measure_unit = models.CharField(max_length=10)
+    measure_unit = models.CharField(max_length=10, null=True, blank=True)
+    measure_unit_dropdown = models.ForeignKey('MeasureUnit', null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
@@ -96,12 +99,25 @@ class Reinforcement(models.Model):
 
 class Others(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
-    measure_unit = models.CharField(max_length=10)
+    measure_unit = models.CharField(max_length=10, null=True, blank=True)
+    measure_unit_dropdown = models.ForeignKey('MeasureUnit', null=True, blank=True, on_delete=models.SET_NULL)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['-created']
+
+class MeasureUnit(models.Model):
+    name = models.CharField(max_length=20)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
 
     def __str__(self):
         return self.name

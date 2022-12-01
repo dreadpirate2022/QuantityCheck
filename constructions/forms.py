@@ -22,7 +22,15 @@ class ConstructionForm(ModelForm):
 class EarthForm(ModelForm):
     class Meta:
         model = Earth
-        fields = ['name', 'custom_name', 'quantity', 'measure_unit']
+        fields = ['name', 'custom_name', 'quantity', 'measure_unit_dropdown']
+
+        widgets = {
+            'measure_unit_dropdown': forms.Select(),
+        }
+
+        labels = {
+            "measure_unit_dropdown": "Measure Unit"
+        }
 
     def __init__(self, *args, **kwargs):
         super(EarthForm, self).__init__(*args, **kwargs)
@@ -30,12 +38,20 @@ class EarthForm(ModelForm):
         self.fields['name'].widget.attrs.update({'class':'input'})
         self.fields['custom_name'].widget.attrs.update({'class':'input'})
         self.fields['quantity'].widget.attrs.update({'class':'input'})
-        self.fields['measure_unit'].widget.attrs.update({'class':'input'})
+        self.fields['measure_unit_dropdown'].widget.attrs.update({'class':'input'})
 
 class ConcreteForm(ModelForm):
     class Meta:
         model = Concrete
-        fields = ['name', 'custom_name', 'quantity', 'measure_unit']
+        fields = ['name', 'custom_name', 'quantity', 'measure_unit_dropdown']
+
+        widgets = {
+            'measure_unit_dropdown': forms.Select(),
+        }
+
+        labels = {
+            "measure_unit_dropdown": "Measure Unit"
+        }
 
     def __init__(self, *args, **kwargs):
         super(ConcreteForm, self).__init__(*args, **kwargs)
@@ -43,12 +59,20 @@ class ConcreteForm(ModelForm):
         self.fields['name'].widget.attrs.update({'class':'input'})
         self.fields['custom_name'].widget.attrs.update({'class':'input'})
         self.fields['quantity'].widget.attrs.update({'class':'input'})
-        self.fields['measure_unit'].widget.attrs.update({'class':'input'})
+        self.fields['measure_unit_dropdown'].widget.attrs.update({'class':'input'})
 
 class ReinforcementForm(ModelForm):
     class Meta:
         model = Reinforcement
-        fields = ['name', 'custom_name', 'quantity', 'measure_unit']
+        fields = ['name', 'custom_name', 'quantity', 'measure_unit_dropdown']
+
+        widgets = {
+            'measure_unit_dropdown': forms.Select(),
+        }
+
+        labels = {
+            "measure_unit_dropdown": "Measure Unit"
+        }
 
     def __init__(self, *args, **kwargs):
         super(ReinforcementForm, self).__init__(*args, **kwargs)
@@ -56,12 +80,20 @@ class ReinforcementForm(ModelForm):
         self.fields['name'].widget.attrs.update({'class':'input'})
         self.fields['custom_name'].widget.attrs.update({'class':'input'})
         self.fields['quantity'].widget.attrs.update({'class':'input'})
-        self.fields['measure_unit'].widget.attrs.update({'class':'input'})
+        self.fields['measure_unit_dropdown'].widget.attrs.update({'class':'input'})
 
 class OthersForm(ModelForm):
     class Meta:
         model = Others
-        fields = ['name', 'custom_name', 'quantity', 'measure_unit']
+        fields = ['name', 'custom_name', 'quantity', 'measure_unit_dropdown']
+
+        widgets = {
+            'measure_unit_dropdown': forms.Select(),
+        }
+
+        labels = {
+            "measure_unit_dropdown": "Measure Unit"
+        }
 
     def __init__(self, *args, **kwargs):
         super(OthersForm, self).__init__(*args, **kwargs)
@@ -69,4 +101,4 @@ class OthersForm(ModelForm):
         self.fields['name'].widget.attrs.update({'class':'input'})
         self.fields['custom_name'].widget.attrs.update({'class':'input'})
         self.fields['quantity'].widget.attrs.update({'class':'input'})
-        self.fields['measure_unit'].widget.attrs.update({'class':'input'})
+        self.fields['measure_unit_dropdown'].widget.attrs.update({'class':'input'})

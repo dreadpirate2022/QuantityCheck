@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others
+from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others, MeasureUnit
 from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm, OthersForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -119,15 +119,16 @@ def othersPositions(request, pk):
 # Earth operations
 @login_required(login_url='users:login')
 def addEarthQuantity(request, pk):
-    constructionObj = Construction.objects.get(id=pk)
+    constructionObj = Construction.objects.get(id=pk)    
     form = EarthForm()
-
+       
     if request.method == 'POST':
         form = EarthForm(request.POST)
         if form.is_valid():
             quantity = form.save(commit=False)
             quantity.owner = constructionObj
             quantity.save()
+
             messages.success(request, 'Quantity was added')
             pre_url = '/earth-positions/{id}'.format(id=pk)
             return redirect(pre_url)
