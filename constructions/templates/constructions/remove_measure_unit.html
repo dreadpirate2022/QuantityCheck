@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form action="" class="delete__form" method="POST">
+    {% csrf_token %}    
+    
+    <p class="delete__message">Choose the measure unit you want to delete 
+        <select class="units" name="units" id="">
+            
+            {% for unit in units %}
+                <option class="option" value="{{unit}}">{{unit}}</option>
+            {% endfor %}
+        
+        </select>
+    </p>
+    <a class="add__operation" href="{{request.META.HTTP_REFERER}}">Go Back</a>
+    <input class="add__operation" type="submit" value="Confirm">
+</form>
+{% endblock content %}

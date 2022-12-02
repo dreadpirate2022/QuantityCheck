@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others, MeasureUnit
-from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm, OthersForm
+from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm, OthersForm, AddMeasureUnitForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions
@@ -337,3 +337,30 @@ def deleteOthersQuantity(request, pk):
     
     return render(request, 'constructions/delete_template.html', context)
 
+def addMeasureUnit(request):
+    form = AddMeasureUnitForm()
+
+    if request.method == 'POST':
+        form = AddMeasureUnitForm(request.POST)
+        if form.is_valid():
+            unit = form.save(commit=False)
+            unit.owner = request.POST['name']
+            unit.save()
+            messages.success(request, 'Measure unit was added')
+            return redirect('users:account')
+
+    context = {'form':form,}  
+    return render(request, 'constructions/add_measure_unit.html', context)
+
+def removeMeasureUnit(request):
+    measureUnits = MeasureUnit.objects.all()
+
+    if request.method == 'POST':
+        unit = MeasureUnit.objects.get(name=request.POST['units'])
+        unit.delete()
+        messages.success(request, 'Measure unit was deleted')
+        
+        return redirect('users:account')
+
+    context = {'units':measureUnits}  
+    return render(request, 'constructions/remove_measure_unit.html', context)

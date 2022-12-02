@@ -28,6 +28,10 @@
 .form__label {
     font-size: 2rem;
     padding: 0.5rem 0rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
 }
 
 .checkbox {
@@ -96,6 +100,15 @@
     align-items: center;
     gap: 2rem;
     font-size: 1.2rem;
+}
+
+.add__measure_unit, .remove__measure_unit {
+    font-size: 1.4rem;
+    text-decoration: none;    
+}
+
+.add__measure_unit {
+    margin-left: auto;
 }
 
 /* Login and Register form */
@@ -286,4 +299,11 @@
     color: #bd0000;
     font-weight: 700;
     font-size: 1.6rem;
+}
+
+.units {
+    font-size: 1.8rem;
+    color: #333333;
+    border: solid 0.2px #bd0000;
+    border-radius: 0.5rem;
 }

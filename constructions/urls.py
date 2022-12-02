@@ -30,4 +30,7 @@ urlpatterns = [
     path('add-others-quantity/<str:pk>', views.addOthersQuantity, name='add-others-quantity'),
     path('update-others-quantity/<str:pk>', views.updateOthersQuantity, name='update-others-quantity'),
     path('delete-others-quantity/<str:pk>', views.deleteOthersQuantity, name='delete-others-quantity'),
+
+    path('add-measure-unit/', views.addMeasureUnit, name='add-measure-unit'),
+    path('remove-measure-unit/', views.removeMeasureUnit, name='remove-measure-unit'),
 ]

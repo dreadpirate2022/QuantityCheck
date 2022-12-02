@@ -128,3 +128,7 @@ window.addEventListener("resize", () => {
         closeMenuBtn.style.display = 'none'
     }
 })
+
+// Change selection first item to selected
+const options = document.getElementById('id_measure_unit_dropdown').children
+options[0].remove();

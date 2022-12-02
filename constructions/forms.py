@@ -1,6 +1,6 @@
 from django.forms import ModelForm, widgets
 from django import forms
-from . models import Construction, Earth, Concrete, Reinforcement, Others
+from . models import Construction, Earth, Concrete, Reinforcement, Others, MeasureUnit
 
 class ConstructionForm(ModelForm):
     class Meta:
@@ -102,3 +102,14 @@ class OthersForm(ModelForm):
         self.fields['custom_name'].widget.attrs.update({'class':'input'})
         self.fields['quantity'].widget.attrs.update({'class':'input'})
         self.fields['measure_unit_dropdown'].widget.attrs.update({'class':'input'})
+
+class AddMeasureUnitForm(ModelForm):
+    class Meta:
+        model = MeasureUnit
+        fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        super(AddMeasureUnitForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class':'input'})
+        
