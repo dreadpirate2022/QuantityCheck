@@ -31,7 +31,8 @@ def searchEarth(request):
         Q(custom_name__icontains=search_query) |       
         Q(quantity__icontains=search_query) |       
         Q(measure_unit_dropdown__name=search_query) |       
-        Q(created__icontains=search_query)      
+        Q(created__icontains=search_query) |      
+        Q(date__icontains=search_query)      
     )
 
     return quantities
@@ -47,7 +48,8 @@ def searchConcrete(request):
         Q(custom_name__icontains=search_query) |       
         Q(quantity__icontains=search_query) |       
         Q(measure_unit_dropdown__name=search_query) |       
-        Q(created__icontains=search_query)      
+        Q(created__icontains=search_query) |      
+        Q(date__icontains=search_query)      
     )
 
     return quantities
@@ -63,7 +65,8 @@ def searchReinforcement(request):
         Q(custom_name__icontains=search_query) |       
         Q(quantity__icontains=search_query) |       
         Q(measure_unit_dropdown__name=search_query) |       
-        Q(created__icontains=search_query)      
+        Q(created__icontains=search_query) |      
+        Q(date__icontains=search_query)            
     )
 
     return quantities
@@ -79,7 +82,8 @@ def searchOthers(request):
         Q(custom_name__icontains=search_query) |       
         Q(quantity__icontains=search_query) |       
         Q(measure_unit_dropdown__name=search_query) |       
-        Q(created__icontains=search_query)      
+        Q(created__icontains=search_query) |      
+        Q(date__icontains=search_query)            
     )
 
     return quantities

@@ -51,6 +51,7 @@ class Tag(models.Model):
 
 class Earth(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
@@ -67,6 +68,7 @@ class Earth(models.Model):
 
 class Concrete(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
@@ -83,6 +85,7 @@ class Concrete(models.Model):
 
 class Reinforcement(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
@@ -99,6 +102,7 @@ class Reinforcement(models.Model):
 
 class Others(models.Model):
     owner = models.ForeignKey(Construction, null=True, blank=True, on_delete=models.CASCADE)
+    date = models.DateField(auto_now_add=False, auto_now=False, null=True, blank=True)
     name = models.CharField(max_length=50, null=True, blank=True)
     custom_name = models.CharField(max_length=50, null=True, blank=True)
     quantity = models.DecimalField(decimal_places=3, max_digits=50, null=True, blank=True)
