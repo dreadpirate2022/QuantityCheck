@@ -3,7 +3,7 @@ from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others, 
 from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm, OthersForm, AddMeasureUnitForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions
+from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions, measureUnitName
 from django.db.models import Sum, Q, Max
 
 
@@ -136,22 +136,11 @@ def summaryPositions(request, pk):
     'measureUnits':measureUnits,
     }
 
-    for query in earthSummary:
-        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
-        query['measure_unit_dropdown'] = unit
-
-    for query in concreteSummary:
-        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
-        query['measure_unit_dropdown'] = unit
-
-    for query in reinforcementSummary:
-        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
-        query['measure_unit_dropdown'] = unit
-
-    for query in othersSummary:
-        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
-        query['measure_unit_dropdown'] = unit
-
+    measureUnitName(earthSummary)
+    measureUnitName(concreteSummary)
+    measureUnitName(reinforcementSummary)
+    measureUnitName(othersSummary)
+    
     return render(request, 'constructions/summary_positions.html', context)
 
 # Earth operations
