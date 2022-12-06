@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<main>
+    <section class="summary__section">
+        <h3 class=singleConstruction__subtitle>Summary Tables for <a class="subtitle__link" href="{% url 'constructions:construction' construction.id %}">{{construction}}</a></h3>
+        <br>
+        <br>
+        <h3 class="summary__table-title">Earth Quantites Summary</h3>
+        <table class="summary__table">
+            <tr>      
+                <th>Custom Name</th>
+                <th>Quantity</th>
+                <th>Measure Unit</th>
+            </tr>
+                       
+            {% for quantity in earthSummary %}
+            <tr>             
+                <td>{{quantity.custom_name}}</td>
+                <td>{{quantity.quantity}}</td>
+                <td>{{quantity.measure_unit_dropdown}}</td>            
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3 class="summary__table-title">Concrete Quantites Summary</h3>
+        <table class="summary__table">
+            <tr>            
+                <th>Custom Name</th>
+                <th>Quantity</th>
+                <th>Measure Unit</th>
+            </tr>
+
+            {% for quantity in concreteSummary %}
+            <tr>             
+                <td>{{quantity.custom_name}}</td>
+                <td>{{quantity.quantity}}</td>                
+                <td>{{quantity.measure_unit_dropdown}}</td>   
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h3 class="summary__table-title">Reinforcement Quantites Summary</h3>
+        <table class="summary__table">
+            <tr>              
+                <th>Custom Name</th>
+                <th>Quantity</th>
+                <th>Measure Unit</th>
+            </tr>
+
+            {% for quantity in reinforcementSummary %}
+            <tr>             
+                <td>{{quantity.custom_name}}</td>
+                <td>{{quantity.quantity}}</td>    
+                <td>{{quantity.measure_unit_dropdown}}</td>    
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <h3 class="summary__table-title">Others Quantites Summary</h3>
+        <table class="summary__table">
+            <tr>             
+                <th>Custom Name</th>
+                <th>Quantity</th>
+                <th>Measure Unit</th>
+            </tr>
+
+            {% for quantity in othersSummary %}
+            <tr>             
+                <td>{{quantity.custom_name}}</td>
+                <td>{{quantity.quantity}}</td>
+                <td>{{quantity.measure_unit_dropdown}}</td>   
+            </tr>
+            {% endfor %}
+        </table>
+    </section>  
+</main>
+{% endblock content %}
+    

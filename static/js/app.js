@@ -73,7 +73,7 @@ function sortByQuantity(sorted = true) {
   
     array.forEach(el => {
         dataFeatures.forEach(feature => {
-            if(parseInt(feature.children[3].children[1].textContent) === el) {
+            if(parseInt(feature.children[4].children[1].textContent) === el) {
                 dataContainer.insertAdjacentElement('beforeend',feature);
             };
         });
@@ -130,5 +130,12 @@ window.addEventListener("resize", () => {
 })
 
 // Change selection first item to selected
-const options = document.getElementById('id_measure_unit_dropdown').children
-options[0].remove();
+try {
+    const options = document.getElementById('id_measure_unit_dropdown').children
+    if (options) {
+        options[0].remove();
+    }
+}    
+catch {
+    //pass
+}

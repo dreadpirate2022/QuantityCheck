@@ -14,6 +14,7 @@ urlpatterns = [
     path('concrete-positions/<str:pk>', views.concretePositions, name='concrete-positions'),
     path('reinforcement-positions/<str:pk>', views.reinforcementPositions, name='reinforcement-positions'),
     path('others-positions/<str:pk>', views.othersPositions, name='others-positions'),
+    path('summary-positions/<str:pk>', views.summaryPositions, name='summary-positions'),
 
     path('add-earth-quantity/<str:pk>', views.addEarthQuantity, name='add-earth-quantity'),
     path('update-earth-quantity/<str:pk>', views.updateEarthQuantity, name='update-earth-quantity'),

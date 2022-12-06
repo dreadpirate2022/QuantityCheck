@@ -4,6 +4,8 @@ from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions
+from django.db.models import Sum, Q, Max
+
 
 # Constructions
 def constructions(request):
@@ -115,6 +117,42 @@ def othersPositions(request, pk):
 
     context = {'construction':constructionObj, 'quantities':quantities}
     return render(request, 'constructions/others_positions.html', context)
+
+def summaryPositions(request, pk):
+    constructionObj = Construction.objects.get(id=pk)
+
+    earthSummary = Earth.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    concreteSummary = Concrete.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    reinforcementSummary = Reinforcement.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    othersSummary = Others.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
+
+    measureUnits = MeasureUnit.objects.all()
+
+    context = {'construction':constructionObj,
+    'earthSummary':earthSummary,
+    'concreteSummary':concreteSummary, 
+    'reinforcementSummary':reinforcementSummary,
+    'othersSummary':othersSummary,
+    'measureUnits':measureUnits,
+    }
+
+    for query in earthSummary:
+        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
+        query['measure_unit_dropdown'] = unit
+
+    for query in concreteSummary:
+        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
+        query['measure_unit_dropdown'] = unit
+
+    for query in reinforcementSummary:
+        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
+        query['measure_unit_dropdown'] = unit
+
+    for query in othersSummary:
+        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
+        query['measure_unit_dropdown'] = unit
+
+    return render(request, 'constructions/summary_positions.html', context)
 
 # Earth operations
 @login_required(login_url='users:login')
