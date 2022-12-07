@@ -3,7 +3,7 @@ from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others, 
 from . forms import ConstructionForm, EarthForm, ConcreteForm, ReinforcementForm, OthersForm, AddMeasureUnitForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions, measureUnitName
+from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions
 from django.db.models import Sum, Q, Max
 from django.http import HttpResponse
 from datetime import datetime
@@ -125,10 +125,10 @@ def othersPositions(request, pk):
 def summaryPositions(request, pk):
     constructionObj = Construction.objects.get(id=pk)
 
-    earthSummary = Earth.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
-    concreteSummary = Concrete.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
-    reinforcementSummary = Reinforcement.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
-    othersSummary = Others.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    earthSummary = Earth.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown__name').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    concreteSummary = Concrete.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown__name').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    reinforcementSummary = Reinforcement.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown__name').annotate(quantity=Sum('quantity')).order_by('custom_name')
+    othersSummary = Others.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown__name').annotate(quantity=Sum('quantity')).order_by('custom_name')
 
     context = {'construction':constructionObj,
     'earthSummary':earthSummary,
@@ -137,11 +137,6 @@ def summaryPositions(request, pk):
     'othersSummary':othersSummary,
     }
 
-    measureUnitName(earthSummary)
-    measureUnitName(concreteSummary)
-    measureUnitName(reinforcementSummary)
-    measureUnitName(othersSummary)
-    
     return render(request, 'constructions/summary_positions.html', context)
 
 # Earth operations
@@ -412,15 +407,15 @@ def exportExcel(request, pk):
 
     font_style = xlwt.XFStyle()
 
-    rows_earth = Earth.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
-    rows_concrete = Concrete.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
-    rows_reinforcement = Reinforcement.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
-    rows_others = Others.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
-
+    rows_earth = Earth.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
+    rows_concrete = Concrete.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
+    rows_reinforcement = Reinforcement.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
+    rows_others = Others.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
+    
     for row in rows_earth:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)
+            ws.write(row_num, col_num, str(row[col_num]), font_style) 
 
     for row in rows_concrete:
         row_num += 1

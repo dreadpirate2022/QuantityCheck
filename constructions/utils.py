@@ -1,4 +1,4 @@
-from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others, MeasureUnit
+from . models import Construction, Tag, Earth, Concrete, Reinforcement, Others
 from django.db.models import Q
 from  django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
@@ -115,9 +115,4 @@ def paginateConstructions(request, constructions, results):
     custom_range = range(leftIndex, rightIndex)
 
     return custom_range, constructions
-
-def measureUnitName(queryset):
-    for query in queryset:
-        unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
-        query['measure_unit_dropdown'] = unit
 
