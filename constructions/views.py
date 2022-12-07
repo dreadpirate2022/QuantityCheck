@@ -5,6 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from . utils import searchConstructions, searchEarth, searchConcrete, searchReinforcement, searchOthers, paginateConstructions, measureUnitName
 from django.db.models import Sum, Q, Max
+from django.http import HttpResponse
+from datetime import datetime
+import xlwt
+
 
 
 # Constructions
@@ -126,14 +130,11 @@ def summaryPositions(request, pk):
     reinforcementSummary = Reinforcement.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
     othersSummary = Others.objects.filter(Q(owner=constructionObj)).values('custom_name', 'measure_unit_dropdown').annotate(quantity=Sum('quantity')).order_by('custom_name')
 
-    measureUnits = MeasureUnit.objects.all()
-
     context = {'construction':constructionObj,
     'earthSummary':earthSummary,
     'concreteSummary':concreteSummary, 
     'reinforcementSummary':reinforcementSummary,
     'othersSummary':othersSummary,
-    'measureUnits':measureUnits,
     }
 
     measureUnitName(earthSummary)
@@ -391,3 +392,51 @@ def removeMeasureUnit(request):
 
     context = {'units':measureUnits}  
     return render(request, 'constructions/remove_measure_unit.html', context)
+
+def exportExcel(request, pk):
+    constructionObj = Construction.objects.get(id=pk)
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename={Construction}'.format(Construction=constructionObj) + '-' + \
+        str(datetime.now()) + '.xls'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet('Quantities')
+    row_num = 0
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Created', 'Date', 'Name', 'Custom Name', 'Quantity', 'Measure Unit']
+
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    font_style = xlwt.XFStyle()
+
+    rows_earth = Earth.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
+    rows_concrete = Concrete.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
+    rows_reinforcement = Reinforcement.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
+    rows_others = Others.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown')
+
+    for row in rows_earth:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+    for row in rows_concrete:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)    
+
+    for row in rows_reinforcement:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+    for row in rows_others:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+    wb.save(response)
+
+    return response

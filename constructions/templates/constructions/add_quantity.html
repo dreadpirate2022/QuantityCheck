@@ -22,9 +22,11 @@
                                 {% endif %}
                             </label>
                             <p>{{field}}</p>
-                            
-                        </div>                        
-                                                    
+                            {% for error in field.errors %}
+                                <p class="form__fields-messages">{{error}}</p>
+                            {% endfor %}                                                   
+                        </div>                       
+                          
                     {% endfor %}
     
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />

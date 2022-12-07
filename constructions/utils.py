@@ -120,3 +120,4 @@ def measureUnitName(queryset):
     for query in queryset:
         unit = MeasureUnit.objects.get(pk=query['measure_unit_dropdown'])
         query['measure_unit_dropdown'] = unit
+

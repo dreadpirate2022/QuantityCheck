@@ -4,9 +4,9 @@
 <main>
     <section class="summary__section">
         <h3 class=singleConstruction__subtitle>Summary Tables for <a class="subtitle__link" href="{% url 'constructions:construction' construction.id %}">{{construction}}</a></h3>
+        <a class="excel" href="{% url 'constructions:export-excel' construction.id %}">Export Excel</a>
         <br>
-        <br>
-        <h3 class="summary__table-title">Earth Quantites Summary</h3>
+            <h3 class="summary__table-title">Earth Quantites Summary</h3>
         <table class="summary__table">
             <tr>      
                 <th>Custom Name</th>

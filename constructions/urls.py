@@ -34,4 +34,6 @@ urlpatterns = [
 
     path('add-measure-unit/', views.addMeasureUnit, name='add-measure-unit'),
     path('remove-measure-unit/', views.removeMeasureUnit, name='remove-measure-unit'),
+
+    path('export-excel/<str:pk>', views.exportExcel, name='export-excel'),
 ]
