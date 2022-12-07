@@ -396,14 +396,16 @@ def exportExcel(request, pk):
 
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet('Quantities')
-    row_num = 0
+    row_num = 2
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['Created', 'Date', 'Name', 'Custom Name', 'Quantity', 'Measure Unit']
+    ws.write_merge(0, 0, 0, 5, "{Construction}".format(Construction=constructionObj), font_style)
+
+    columns = ['Created', 'Date', 'Name', 'Custom Name', 'Quantity', 'Measure Unit'] 
 
     for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style)
+        ws.write(row_num - 1, col_num, columns[col_num], font_style)
 
     font_style = xlwt.XFStyle()
 
@@ -412,20 +414,30 @@ def exportExcel(request, pk):
     rows_reinforcement = Reinforcement.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
     rows_others = Others.objects.filter(Q(owner=constructionObj)).values_list('created', 'date', 'name', 'custom_name', 'quantity', 'measure_unit_dropdown__name')
     
+    ws.write_merge(row_num, row_num, 0, 5, "Earth Quantities")
     for row in rows_earth:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style) 
+            ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+    row_num += 1
+    ws.write_merge(row_num, row_num, 0, 5, "Concrete Quantities")
 
     for row in rows_concrete:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)    
+            ws.write(row_num, col_num, str(row[col_num]), font_style)   
+
+    row_num += 1
+    ws.write_merge(row_num, row_num, 0, 5, "Reinforcement Quantities")
 
     for row in rows_reinforcement:
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, str(row[col_num]), font_style)
+
+    row_num += 1
+    ws.write_merge(row_num, row_num, 0, 5, "Others Quantities")
 
     for row in rows_others:
         row_num += 1
