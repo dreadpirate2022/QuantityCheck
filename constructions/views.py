@@ -418,7 +418,10 @@ def exportExcel(request, pk):
     for row in rows_earth:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)
+            if col_num == 0:
+                ws.write(row_num, col_num, (row[col_num]).strftime("%d-%m-%Y %H:%M:%S"), font_style)
+            else:    
+                ws.write(row_num, col_num, str(row[col_num]), font_style)
 
     row_num += 1
     ws.write_merge(row_num, row_num, 0, 5, "Concrete Quantities")
@@ -426,7 +429,10 @@ def exportExcel(request, pk):
     for row in rows_concrete:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)   
+            if col_num == 0:
+                ws.write(row_num, col_num, (row[col_num]).strftime("%d-%m-%Y %H:%M:%S"), font_style)
+            else:    
+                ws.write(row_num, col_num, str(row[col_num]), font_style)   
 
     row_num += 1
     ws.write_merge(row_num, row_num, 0, 5, "Reinforcement Quantities")
@@ -434,7 +440,10 @@ def exportExcel(request, pk):
     for row in rows_reinforcement:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)
+            if col_num == 0:
+                ws.write(row_num, col_num, (row[col_num]).strftime("%d-%m-%Y %H:%M:%S"), font_style)
+            else:    
+                ws.write(row_num, col_num, str(row[col_num]), font_style)
 
     row_num += 1
     ws.write_merge(row_num, row_num, 0, 5, "Others Quantities")
@@ -442,7 +451,10 @@ def exportExcel(request, pk):
     for row in rows_others:
         row_num += 1
         for col_num in range(len(row)):
-            ws.write(row_num, col_num, str(row[col_num]), font_style)
+            if col_num == 0:
+                ws.write(row_num, col_num, (row[col_num]).strftime("%d-%m-%Y %H:%M:%S"), font_style)
+            else:    
+                ws.write(row_num, col_num, str(row[col_num]), font_style)
 
     wb.save(response)
 
